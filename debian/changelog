@@ -1,10 +1,44 @@
+tcp-wrappers (7.6.q-25) unstable; urgency=medium
+
+  * Replace portmap with rpcbind in the hosts.* files comments.
+    (Closes: #722230)
+  * Update patch fix_warnings: fix the declaration of fix_options().
+    (Closes: #710391)
+
+ -- Marco d'Itri <md@linux.it>  Mon, 30 Dec 2013 07:05:06 +0100
+
+tcp-wrappers (7.6.q-24) unstable; urgency=low
+
+  * Do not remove /etc/hosts.{allow,deny} on purge of libwrap0 if it is
+    installed for multiple architectures. (Closes: #682425)
+    Patch courtesy of Jonathan Nieder.
+
+ -- Marco d'Itri <md@linux.it>  Mon, 30 Jul 2012 03:37:41 +0200
+
+tcp-wrappers (7.6.q-23) unstable; urgency=medium
+
+  * Correctly install libwrap.{a,so} in the multiarch directory.
+    (Closes: #658765)
+
+ -- Marco d'Itri <md@linux.it>  Sun, 19 Feb 2012 01:42:27 +0100
+
+tcp-wrappers (7.6.q-22) unstable; urgency=medium
+
+  * Added patch ignore_missing_inetdconf: stop tcpdmatch and tcpdchk
+    from aborting if /etc/inetd.conf does not exist. (Closes: #650826)
+  * Enabled hardening with dpkg-buildflags, and this time for real.
+  * libwrap0-dev marked "Multi-Arch: same".
+  * Added patch initgroups: properly set supplementary group IDs, taken
+    from the Red Hat package.
+
+ -- Marco d'Itri <md@linux.it>  Mon, 05 Dec 2011 05:56:54 +0100
+
 tcp-wrappers (7.6.q-21) unstable; urgency=medium
 
   * Added the proper Breaks/Replaces directives to deal with the man pages
     moved in 7.6.q-20. (Closes: #631252, #631311)
   * Enabled IPv6 support for the Hurd build. (Closes: #631247)
   * Enabled hardening with hardening-includes.
-  * 
 
  -- Marco d'Itri <md@linux.it>  Fri, 24 Jun 2011 00:21:44 +0200
 
