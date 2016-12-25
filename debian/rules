@@ -5,6 +5,8 @@ D := $(CURDIR)/debian/tcpd
 W := $(CURDIR)/debian/libwrap0
 WD := $(CURDIR)/debian/libwrap0-dev
 
+DEB_BUILD_MAINT_OPTIONS=hardening=+bindnow
+
 CFLAGS=-g -O2
 -include /usr/share/dpkg/buildflags.mk
 

@@ -1,3 +1,9 @@
+tcp-wrappers (7.6.q-26) unstable; urgency=medium
+
+  * Added patch fix_warnings2 to fix undefined functions.
+
+ -- Marco d'Itri <md@linux.it>  Mon, 26 Dec 2016 00:08:55 +0100
+
 tcp-wrappers (7.6.q-25) unstable; urgency=medium
 
   * Replace portmap with rpcbind in the hosts.* files comments.

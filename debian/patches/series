@@ -29,3 +29,4 @@ fix_static
 fix_parsing_long_lines
 initgroups
 ignore_missing_inetdconf
+fix_warnings2
