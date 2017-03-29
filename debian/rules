@@ -1,11 +1,12 @@
 #!/usr/bin/make -f
 SHELL+= -e
 
-export DPKG_GENSYMBOLS_CHECK_LEVEL=2
-
 D := $(CURDIR)/debian/tcpd
 W := $(CURDIR)/debian/libwrap0
 WD := $(CURDIR)/debian/libwrap0-dev
+
+CFLAGS=-g -O2
+-include /usr/share/dpkg/buildflags.mk
 
 # for dpkg-cross
 DEB_HOST_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
@@ -34,7 +35,7 @@ build-arch: debian/.stamp-build
 build-indep: debian/.stamp-build
 debian/.stamp-build:
 	dh_testdir
-	$(MAKE) $(CROSS) COPTS="$(CFLAGS)" LDOPTS="$(LDFLAGS)" $(DEB_BUILD_GNU_SYSTEM)
+	$(MAKE) $(CROSS) COPTS="$(CFLAGS) $(CPPFLAGS)" LDOPTS="$(LDFLAGS)" $(DEB_BUILD_GNU_SYSTEM)
 	touch $@
 
 binary-arch: debian/.stamp-build checkroot
@@ -45,24 +46,26 @@ binary-arch: debian/.stamp-build checkroot
 	dh_install
 
 	dh_installdocs --link-doc=libwrap0
-	dh_installdocs -p libwrap0 --link-doc=libwrap0 README
+	dh_installdocs -p libwrap0 README
 	dh_installchangelogs CHANGES
 	dh_installman -p tcpd *.8
 	dh_installman -p libwrap0 *.5
 	dh_installman -p libwrap0-dev *.3
 	dh_link
 
-	mkdir -p $W/lib/$(DEB_HOST_MULTIARCH)/
+	mkdir -p $W/lib/$(DEB_HOST_MULTIARCH)/ $(WD)/usr/lib/$(DEB_HOST_MULTIARCH)/
 	cp shared/libwrap.so.0.7.6 $W/lib/$(DEB_HOST_MULTIARCH)/
 	ln -s libwrap.so.0.7.6 $W/lib/$(DEB_HOST_MULTIARCH)/libwrap.so.0
-	ln -s /lib/$(DEB_HOST_MULTIARCH)/libwrap.so.0 $(WD)/usr/lib/libwrap.so
+	ln -s /lib/$(DEB_HOST_MULTIARCH)/libwrap.so.0 \
+		$(WD)/usr/lib/$(DEB_HOST_MULTIARCH)/libwrap.so
+	mv $(WD)/usr/lib/libwrap.a $(WD)/usr/lib/$(DEB_HOST_MULTIARCH)/
 
 	dh_link
 	dh_strip
 	dh_compress
 	dh_fixperms
 	dh_installdebconf
-	dh_makeshlibs
+	dh_makeshlibs -- -c4
 	dh_installdeb
 	dh_shlibdeps
 	dh_gencontrol
