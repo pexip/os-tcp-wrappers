@@ -18,11 +18,11 @@ ifneq ($(DEB_HOST_GNU_TYPE),$(DEB_BUILD_GNU_TYPE))
   CROSS := CC=$(DEB_HOST_GNU_TYPE)-gcc
 endif
 
-DEB_BUILD_ARCH := $(shell dpkg --print-architecture)
+DEB_BUILD_ARCH ?= $(shell dpkg --print-architecture)
 ifeq ($(filter-out hurd-%,$(DEB_BUILD_ARCH)),)
-  DEB_BUILD_GNU_SYSTEM := gnu
+  build_target := gnu
 else
-  DEB_BUILD_GNU_SYSTEM := linux
+  build_target := linux
 endif
 
 
@@ -37,10 +37,10 @@ build-arch: debian/.stamp-build
 build-indep: debian/.stamp-build
 debian/.stamp-build:
 	dh_testdir
-	$(MAKE) $(CROSS) COPTS="$(CFLAGS) $(CPPFLAGS)" LDOPTS="$(LDFLAGS)" $(DEB_BUILD_GNU_SYSTEM)
+	$(MAKE) $(CROSS) COPTS="$(CFLAGS) $(CPPFLAGS)" LDOPTS="$(LDFLAGS)" $(build_target)
 	touch $@
 
-binary-arch: debian/.stamp-build checkroot
+binary-arch: debian/.stamp-build
 	dh_testdir
 	dh_prep
 
@@ -75,8 +75,5 @@ binary-arch: debian/.stamp-build checkroot
 	dh_builddeb
 
 binary: binary-arch
-
-checkroot:
-	test root = "`whoami`"
 
 .PHONY: build clean binary-indep binary-arch binary
