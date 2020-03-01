@@ -1,3 +1,17 @@
+tcp-wrappers (7.6.q-28) unstable; urgency=medium
+
+  * Demoted everything to optional priority.
+  * Updated patch fix_warnings2 to fix more undefined functions.
+  * Fixed patch size_t to actually use socklen_t.
+
+ -- Marco d'Itri <md@linux.it>  Mon, 18 Feb 2019 01:54:18 +0100
+
+tcp-wrappers (7.6.q-27) unstable; urgency=medium
+
+  * Stop recommending tcpd. (Closes: #855919)
+
+ -- Marco d'Itri <md@linux.it>  Mon, 30 Oct 2017 00:22:41 +0100
+
 tcp-wrappers (7.6.q-26pexip1) pexip; urgency=medium
 
   * Migrate to Stretch

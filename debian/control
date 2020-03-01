@@ -1,18 +1,19 @@
 Source: tcp-wrappers
 Section: net
-Priority: important
+Priority: optional
 Maintainer: Pexip AS <packaging@pexip.com>
 XSBC-Pexip-Original-Maintainer: Marco d'Itri <md@linux.it>
-Build-Depends: debhelper (>= 9)
-Standards-Version: 3.9.8
-Vcs-Git: https://anonscm.debian.org/git/users/md/tcp-wrappers.git
-Vcs-Browser: https://anonscm.debian.org/cgit/users/md/tcp-wrappers.git
+Build-Depends: debhelper-compat (= 12)
+Standards-Version: 4.3.0.2
+Rules-Requires-Root: no
+Vcs-Git: https://salsa.debian.org/md/tcp-wrappers.git
+Vcs-Browser: https://salsa.debian.org/md/tcp-wrappers
 XS-Pexip-Upstream: http://ftp.debian.org/debian/ buster
 
 Package: tcpd
-Priority: optional
 Architecture: any
 Multi-Arch: foreign
+Pre-Depends: ${misc:Pre-Depends}
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: Wietse Venema's TCP wrapper utilities
  Wietse Venema's network logger, also known as TCPD or LOG_TCP.
@@ -27,14 +28,10 @@ Description: Wietse Venema's TCP wrapper utilities
 
 Package: libwrap0
 Section: libs
-Priority: standard
 Architecture: any
 Multi-Arch: same
 Pre-Depends: ${misc:Pre-Depends}
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Breaks: tcpd (<< 7.6.q-20)
-Replaces: tcpd (<< 7.6.q-20)
-Recommends: tcpd
 Description: Wietse Venema's TCP wrappers library
  Wietse Venema's network logger, also known as TCPD or LOG_TCP.
  .
@@ -48,9 +45,9 @@ Description: Wietse Venema's TCP wrappers library
 
 Package: libwrap0-dev
 Section: libdevel
-Priority: optional
 Architecture: any
 Multi-Arch: same
+Pre-Depends: ${misc:Pre-Depends}
 Depends: libwrap0 (= ${binary:Version}), ${misc:Depends}
 Description: Wietse Venema's TCP wrappers library, development files
  Wietse Venema's network logger, also known as TCPD or LOG_TCP.
