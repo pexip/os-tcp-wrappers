@@ -2,8 +2,8 @@ Source: tcp-wrappers
 Section: net
 Priority: optional
 Maintainer: Marco d'Itri <md@linux.it>
-Build-Depends: debhelper-compat (= 12)
-Standards-Version: 4.3.0.2
+Build-Depends: debhelper-compat (= 12), libnsl-dev | libc6-dev (<< 2.31-4)
+Standards-Version: 4.5.0.3
 Rules-Requires-Root: no
 Vcs-Git: https://salsa.debian.org/md/tcp-wrappers.git
 Vcs-Browser: https://salsa.debian.org/md/tcp-wrappers
