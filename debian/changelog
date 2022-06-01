@@ -1,3 +1,25 @@
+tcp-wrappers (7.6.q-31) unstable; urgency=medium
+
+  [ Helmut Grohne ]
+  * Added an explicit build dependency on libnsl-dev. (Closes: #972188)
+
+ -- Marco d'Itri <md@linux.it>  Thu, 12 Nov 2020 02:31:44 +0100
+
+tcp-wrappers (7.6.q-30) unstable; urgency=medium
+
+  * Restored the support for cross building, thanks to Helmut Grohne.
+    (Closes: #945483)
+
+ -- Marco d'Itri <md@linux.it>  Wed, 27 Nov 2019 15:06:53 +0100
+
+tcp-wrappers (7.6.q-29) unstable; urgency=medium
+
+  * Moved the library from /lib/ to /usr/lib/. (Closes: #941047)
+  * Added support for the musl libc, because they are too good to
+    implement 30-years-old interfaces. (Closes: #941839)
+
+ -- Marco d'Itri <md@linux.it>  Sun, 24 Nov 2019 23:29:52 +0100
+
 tcp-wrappers (7.6.q-28pexip2) pexip; urgency=medium
 
   * Rebuild in buster environment
