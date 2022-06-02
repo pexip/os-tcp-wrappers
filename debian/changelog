@@ -1,3 +1,9 @@
+tcp-wrappers (7.6.q-31pexip1) pexip; urgency=medium
+
+  * Initial bullseye build
+
+ -- Mark Hymers <mark.hymers@pexip.com>  Thu, 02 Jun 2022 14:43:00 +0100
+
 tcp-wrappers (7.6.q-31) unstable; urgency=medium
 
   [ Helmut Grohne ]
