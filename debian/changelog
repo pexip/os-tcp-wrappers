@@ -1,3 +1,9 @@
+tcp-wrappers (7.6.q-31pexip3) pexip-bullseye; urgency=medium
+
+  * Bullseye rebuild for ARM64 inclusion
+
+ -- Mark Hymers <mark.hymers@pexip.com>  Mon, 05 Sep 2022 10:36:07 +0100
+
 tcp-wrappers (7.6.q-31pexip2) pexip-bullseye; urgency=medium
 
   * Main bullseye build
