@@ -1,4 +1,5 @@
 libwrap.so.0 libwrap0 #MINVER#
+* Build-Depends-Package: libwrap0-dev
  allow_severity@Base 7.6-4~
  cidr_mask_addr@Base 7.6-4~
  clean_exit@Base 7.6-4~

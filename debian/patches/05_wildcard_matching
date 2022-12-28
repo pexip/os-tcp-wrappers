@@ -1,4 +1,6 @@
-See https://bugzilla.redhat.com/bugzilla/show_bug.cgi?id=17847
+From: Pekka Savola <pekkas@netcore.fi>
+Date: 2000-09-26 06:08 UTC
+Origin: https://bugzilla.redhat.com/bugzilla/show_bug.cgi?id=17847
 (Though the original code needs to be patched to be case-insensitive.)
 
 --- a/hosts_access.5

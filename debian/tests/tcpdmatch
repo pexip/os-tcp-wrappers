@@ -1,0 +1,69 @@
+#!/bin/sh -e
+
+if [ -z "$AUTOPKGTEST_TMP" ]; then
+  AUTOPKGTEST_TMP=$(mktemp -d)
+  trap "rm -rf $AUTOPKGTEST_TMP" 0
+fi
+cd $AUTOPKGTEST_TMP
+
+cat > hosts.allow << 'END'
+d1: 10.0.0.1 10.10.0.0/24 10.11.0. \
+	[fe80::1] [fd00:1:1::]/64 \
+	blackhole-1.iana.org
+d3: 192.175.48.0/24 [2620:4f:8000::]/64
+END
+
+cat > hosts.deny << 'END'
+d1: ALL
+d2: ALL EXCEPT 10.0.0.1 blackhole-1.iana.org
+d3: ALL
+END
+
+##############################################################################
+t() {
+  local daemon=$1
+  local client=$2
+  local expected=$3
+
+  if /usr/sbin/tcpdmatch -d -i /dev/null $daemon $client \
+      | egrep -q "^access: +${expected}"; then
+    echo "$daemon\t$client\tOK"
+  else
+    echo "$daemon\t$client\tFAILED! (expected: $expected)"
+    exit 1
+  fi
+
+  return
+}
+
+##############################################################################
+t d1 10.0.0.1		granted
+t d1 10.0.0.2		denied
+t d1 10.10.0.5		granted
+t d1 10.11.0.5		granted
+t d1 fe80::1		granted
+t d1 fe80::2		denied
+t d1 fd00:1:1::5	granted
+t d1 fd00:1:2::5	denied
+
+echo
+t d1 blackhole-1.iana.org	granted
+t d1 blackhole-2.iana.org	denied
+t d1 192.175.48.42	denied
+t d1 2620:4f:8000::42	denied
+# hostnames in the hosts.* files are not resolved back to IPs
+t d1 192.175.48.6	denied
+t d1 2620:4f:8000::6	denied
+
+echo
+t d2 10.0.0.1		granted
+t d2 10.0.0.2		denied
+t d2 blackhole-1.iana.org	granted
+
+echo
+t d3 blackhole-1.iana.org	granted
+t d3 192.175.48.6	granted
+t d3 2620:4f:8000::6	granted
+t d3 192.175.49.6	denied
+t d3 2620:4f:8001::6	denied
+
