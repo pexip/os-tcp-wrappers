@@ -1,3 +1,14 @@
+tcp-wrappers (7.6.q-32) unstable; urgency=medium
+
+  [ Bastian Germann ]
+  * Converted debian/copyright to machine-readable format. (Closes: #1012631)
+
+  [ Marco d'Itri ]
+  * Added some autopkgtest tests.
+  * Enabled hardening=+all.
+
+ -- Marco d'Itri <md@linux.it>  Wed, 28 Dec 2022 02:39:26 +0100
+
 tcp-wrappers (7.6.q-31pexip3) pexip-bullseye; urgency=medium
 
   * Bullseye rebuild for ARM64 inclusion
@@ -263,7 +274,7 @@ tcp-wrappers (7.6.dbs-9) unstable; urgency=low
 tcp-wrappers (7.6.dbs-8) unstable; urgency=medium
 
   * Fixed postinst to source /usr/share/debconf/confmodule at top level, or
-    $@ will be reset when it re-executes $0. (Closes: #299129) 
+    $@ will be reset when it re-executes $0. (Closes: #299129)
 
  -- Marco d'Itri <md@linux.it>  Sat, 12 Mar 2005 01:00:14 +0100
 
@@ -433,7 +444,7 @@ tcp-wrappers (7.6-7) unstable; urgency=low
   * Fix here document in tcpd postinst (Closes: Bug#75309)
   * Fix apostrophes in tcpd(8), hosts_access(5) and hosts_options(5)
     manpages (Closes: Bug#75654, Bug#75656)
-  * libwrap0 has a weak allow_severity symbol since 7.6-4 (Closes: Bug#51210) 
+  * libwrap0 has a weak allow_severity symbol since 7.6-4 (Closes: Bug#51210)
   * Change "tcpd.h" to <tcpd.h> in hosts_access(3) manpage. (Closes: Bug#63526)
   * tcpd.h seems to be correct (Closes: Bug#65543)
 
@@ -442,7 +453,7 @@ tcp-wrappers (7.6-7) unstable; urgency=low
 tcp-wrappers (7.6-6) unstable; urgency=low
 
   * Use $(CC) to build shared libraries instead of $(LD). Important for
-    getting magical start files or something. (Closes: Bug#71940) 
+    getting magical start files or something. (Closes: Bug#71940)
 
  -- Anthony Towns <ajt@debian.org>  Mon, 18 Sep 2000 11:58:29 -0700
 
@@ -464,7 +475,7 @@ tcp-wrappers (7.6-4) frozen unstable; urgency=high
 
 tcp-wrappers (7.6-3) frozen unstable; urgency=medium
 
-  * Define hosts_ctl in tcpd.h (Closes: Bug#55265, Bug#53887) 
+  * Define hosts_ctl in tcpd.h (Closes: Bug#55265, Bug#53887)
 
  -- Anthony Towns <ajt@debian.org>  Tue, 25 Jan 2000 11:14:33 +1000
 
@@ -472,12 +483,12 @@ tcp-wrappers (7.6-2) unstable; urgency=low
 
   * Move libwrap0 to /lib (Closes: Bug#52534)
 
-  * Make weak symbols for allow_severity and deny_severity 
+  * Make weak symbols for allow_severity and deny_severity
     (Closes: Bug#44542)
   * Adjust shlibs file to require libwrap0 (>= 7.6-1.1) thanks to
     the above (Closes: Bug#51217)
 
-  * Change how the Hurd is handled, thanks to Marcus Brinkmann 
+  * Change how the Hurd is handled, thanks to Marcus Brinkmann
     (Closes: Bug#44408)
 
   * Add support for `ftp' severity specifier. (Closes: Bug#53575)

@@ -1,0 +1,7 @@
+Tests: build
+Depends: build-essential, libwrap0-dev
+
+Tests: tcpdmatch
+Depends: tcpd
+Restrictions: needs-internet
+

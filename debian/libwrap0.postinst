@@ -43,14 +43,6 @@ case "$1" in
     configure)
     create_hosts_files
     ;;
-
-    abort-upgrade|abort-remove|abort-deconfigure)
-    ;;
-
-    *)
-    echo "postinst called with unknown argument '$1'" >&2
-    exit 1
-    ;;
 esac
 
 #DEBHELPER#

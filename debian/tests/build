@@ -1,0 +1,29 @@
+#!/bin/sh -e
+
+if [ -z "$AUTOPKGTEST_TMP" ]; then
+  AUTOPKGTEST_TMP=$(mktemp -d)  
+  trap "rm -rf $AUTOPKGTEST_TMP" 0
+fi
+cd $AUTOPKGTEST_TMP
+
+CC="${DEB_HOST_GNU_TYPE:+$DEB_HOST_GNU_TYPE-}${CC:-gcc}"
+
+cat > test.c << 'END'
+#include <tcpd.h>
+
+int main (int argc, char **argv) {
+	int socket = 0;
+	struct request_info req;
+
+	request_init(&req, RQ_DAEMON, "test", RQ_FILE, socket, 0);
+	fromhost(&req);
+	hosts_access(&req);
+}
+END
+
+$CC -o test test.c -lwrap
+echo "build: OK"
+
+./test
+echo "run: OK"
+
