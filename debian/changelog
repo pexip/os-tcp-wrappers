@@ -1,3 +1,9 @@
+tcp-wrappers (7.6.q-32+pexip24u3) pexip-bookworm; urgency=medium
+
+  * New versioning scheme
+
+ -- Mark Hymers <mark.hymers@pexip.com>  Thu, 01 Feb 2024 16:37:09 +0000
+
 tcp-wrappers (7.6.q-32pexip2) pexip-bookworm; urgency=medium
 
   * Bookworm build for product distribution
